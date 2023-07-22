@@ -1,0 +1,53 @@
+# Django development files
+*.pyc
+*.pyo
+__pycache__/
+*.sqlite3
+
+# Development artifacts
+*.env
+*.log
+*.vscode
+*.pydevproject
+*.pyc
+*.pyo
+*.pyc
+*.bak
+*.swp
+*~
+
+# Static and Media files (assuming they are served from a different location)
+/static/
+/media/
+
+# Secret keys and sensitive information
+*.env
+.env
+
+# Ignore compiled JavaScript and CSS
+*.js
+*.css
+*.map
+
+# Ignore database configuration
+*.db
+*.sqlite3
+
+# Ignore development server configurations
+*.pyc
+*.pyo
+*.pyc
+
+# Ignore test settings
+test_*.py
+
+# Ignore local development settings
+local_settings.py
+
+# Ignore IDE-specific files (e.g., PyCharm, VSCode, etc.)
+/.idea/
+/.vscode/
+
+# Ignore pipenv/virtualenv files
+Pipfile
+Pipfile.lock
