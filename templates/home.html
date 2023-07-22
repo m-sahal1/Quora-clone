@@ -1,0 +1,27 @@
+{% extends 'main.html' %}
+
+{% block title %}Your Quora-like Website - Popular Questions{% endblock %}
+{% block content %}
+<main>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to Your Quora-like Website</h1>
+            <p>Ask, Answer, Learn and Connect with others.</p>
+        </div>
+    </section>
+
+    <section class="question-section">
+        <h2>Popular Questions</h2>
+        <div class="question-list">
+            <!-- Sample question items -->
+            {% for question in questions %}
+            <div class="question-item">
+                <h3><a href="{% url 'view-question' question.id %}">{{question.title}}</a></h3>
+                <p>Posted by: {{question.user}}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+</main>
+{% endblock content %}

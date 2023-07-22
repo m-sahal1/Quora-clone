@@ -1,0 +1,23 @@
+{% extends 'main.html' %} 
+{% block content %}
+<main>
+  <section class="question-section">
+    <div class="question">
+      <h2>{{ question.title }}</h2>
+      <p><b>Posted by: {{ question.user }}</b></p>
+      <p>{{ question.content }}</p>
+    </div>
+    <div class="answers">
+      <h3>Answers</h3>
+      {% for answer in answers %}
+      <div class="answer">
+        <p>
+          <b>Posted by: {{ answer.user }}</b><br />
+          {{ answer.content }}
+        </p>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+</main>
+{% endblock content %}
