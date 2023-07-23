@@ -1,20 +1,28 @@
-{% extends 'main.html' %}
-
-{% block content %}
+{% extends 'main.html' %} 
+{% block content %} 
+{% if page == 'login' %}
 <div>
-    <form method="POST" action="">
-        {% csrf_token %}
-        <br>
-        <hr>
-        <label>Username</label>
-        <input type="text" name="username" placeholder="Username"/>
-        <br>
-        <label>Password</label>
-        <input type="password" name="password" placeholder="Password"/>
-        <br>
-        <input type="Submit" name="login">
-        <br>
-        <hr>
-    </form>
+  <form method="POST" action="">
+    {% csrf_token %}
+    <br />
+    <hr />
+    <label>Username</label>
+    <input type="text" name="username" placeholder="Username" />
+    <br />
+    <label>Password</label>
+    <input type="password" name="password" placeholder="Password" />
+    <br />
+    <input type="Submit" name="login" />
+    <br />
+    <hr />
+  </form>
 </div>
+{% else %}
+<div>
+  <form method="POST" action="">
+    {% csrf_token %} {{form.as_p}}
+    <input type="Submit" value="Submit" />
+  </form>
+</div>
+{% endif %} 
 {% endblock content %}

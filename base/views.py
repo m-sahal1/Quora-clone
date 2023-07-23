@@ -5,6 +5,7 @@ from .models import *
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
 
 
 # Create your views here.
@@ -16,6 +17,10 @@ def home(request):
 
 
 def loginPage(request):
+    # if the user is already logged in they cannot access the login page
+    if request.user.is_authenticated:
+        return redirect("home")
+
     if request.method == "POST":
         username = request.POST.get("username")
         password = request.POST.get("password")
@@ -31,12 +36,28 @@ def loginPage(request):
             return redirect("home")
         else:
             messages.error(request, "Username/Password Does not exist")
-    return render(request, "login_register.html")
+
+    page = "login"
+    context = {"page": page}
+    return render(request, "login_register.html", context)
 
 
 def logoutPage(request):
     logout(request)
     return redirect("home")
+
+
+def registerPage(request):
+    form = UserCreationForm()
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.save()
+            login(request, user)
+            return redirect("home")
+    context = {"form": form, "page": "resgiter"}
+    return render(request, "login_register.html", context)
 
 
 def view_question(request, pk):
@@ -121,12 +142,12 @@ def update_answer(request, ans_id):
             return redirect(view_question_url)
     return render(request, "answer_form.html", {"form": form})
 
+
 @login_required(login_url="login")
 def delete_question(request, pk):
     question = Question.objects.get(id=pk)
-    if(question.user==request.user):
+    if question.user == request.user:
         if request.method == "POST":
             question.delete()
             return redirect("home")
     return render(request, "base/delete.html", {"obj": question})
-    

@@ -18,10 +18,10 @@
         <p>
           <b>Posted by: {{ answer.user }}</b><br />
           {{ answer.content }}<br>
-          <i>Likes:{{answer.total_likes}}</i>
+          <i>Likes:{{answer.total_likes}}</i><br>
+          <a href="{% url 'update-answer' answer.id %}">Edit</a>
+          <a href="{% url 'like-answer' answer.id %}" class="like-button">Like</a>
         </p>
-        <a href="{% url 'update-answer' answer.id %}">Edit</a>
-        <a href="{% url 'like-answer' answer.id %}" class="like-button" >Like</a>
       </div>
       {% endfor %}
     </div>
