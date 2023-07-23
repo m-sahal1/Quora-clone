@@ -1,4 +1,4 @@
-{% extends 'main.html' %} 
+{% extends 'main.html' %}
 {% block content %}
 <main>
   <section class="question-section">
@@ -6,6 +6,10 @@
       <h2>{{ question.title }}</h2>
       <p><b>Posted by: {{ question.user }}</b></p>
       <p>{{ question.content }}</p>
+      <a href="{% url 'update-question' question.id %}" class="add-answer-button">Edit Question</a>
+      <div class="button-container">
+        <a href="{% url 'add-answer' question.id %}" class="add-answer-button">Add Answer</a>
+      </div>
     </div>
     <div class="answers">
       <h3>Answers</h3>
@@ -13,8 +17,11 @@
       <div class="answer">
         <p>
           <b>Posted by: {{ answer.user }}</b><br />
-          {{ answer.content }}
+          {{ answer.content }}<br>
+          <i>Likes:{{answer.total_likes}}</i>
         </p>
+        <a href="{% url 'update-answer' answer.id %}">Edit</a>
+        <a href="{% url 'like-answer' answer.id %}" class="like-button" >Like</a>
       </div>
       {% endfor %}
     </div>
