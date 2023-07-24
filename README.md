@@ -13,21 +13,23 @@
 ### Additional Functionality:
 
 #### Questions
-
+- Not Allowed to add, edit, delete questions until logged-in.
 - Delete Button to delete questions
 - Delete Button is only visible to the author of the Question
 - Edit Button to Edit Questions
-- Delete Question functionality
+- Delete Question functionality only if logged-in user and question author are the same user
 
 #### Answer
 
 - Total likes count updated LIVE
 - Edit Button to Edit Answers
+- Not Allowed to add, edit answers until logged-in.
 
 #### Like
 
 - Likes are mapped from User to Answer allowing to keep track of who liked what
 - Total likes are automatically calculated
+- Not Allowed to Like until logged-in
 
 ### Basic Setup:
 
