@@ -1,5 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
+from django.http import HttpResponseRedirect
 from .forms import *
 from .models import *
 from django.contrib.auth import login, logout, authenticate
@@ -99,22 +100,31 @@ def add_answer(request, pk):
     context = {"form": form, "question": question}
     return render(request, "answer_form.html", context)
 
-
+@login_required(login_url="login")
 def like_answer(request, answer_id):
-    answer = Answer.objects.get(id=answer_id)
-    # Check if the currently logged_in user has already liked the answer
-    if Like.objects.filter(user=request.user, answer=answer).exists():
-        view_question_url = reverse("view-question", kwargs={"pk": answer.question_id})
-        return redirect(view_question_url)
-    if request.method == "POST":
-        like = Like.objects.create(user=request.user, answer=answer)
+    # Get the Answer instance for the given answer_id
+    answer = get_object_or_404(Answer, pk=request.POST.get('answer_id'))
+    like= Like()
+    if request.method == 'POST':
+        # Check if the user has already liked the answer
+        existing_like = Like.objects.filter(user=request.user, answer_id=answer.id)
+
+        if not existing_like:
+            # Create a new Like instance for the answer
+            like = Like.objects.create(user=request.user, answer=answer)
+            like.save()
+
+        else:
+            # If the user has already liked the answer, delete the existing like
+            existing_like.delete()
+
+        # Update and Save the total_likes for the answer
         answer.update_total_likes()
-        like.save()
-    # Redirect back to the view-question page with the fragment identifier (answer_id)
-    view_question_url = (
-        reverse("view-question", kwargs={"pk": answer.question_id}) + f"#{answer_id}"
-    )
-    return redirect(view_question_url)
+        answer.save()
+
+        # Redirect to the view-question page for the associated question
+    return HttpResponseRedirect(reverse("view-question", kwargs={"pk": answer.question_id}))
+    
 
 
 def update_question(request, pk):
