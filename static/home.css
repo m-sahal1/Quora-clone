@@ -1,0 +1,167 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #216FDB;
+    color: #fff;
+    padding: 10px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav-links {
+    list-style-type: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin-right: 20px;
+}
+
+.nav-links li:last-child {
+    margin-right: 0;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.hero {
+    background-color: #f2f2f2;
+    text-align: center;
+    padding: 40px 0;
+}
+
+.hero h1 {
+    font-size: 36px;
+}
+
+.topic-section {
+    padding: 20px;
+}
+
+.question-item,
+.topic-item {
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+    padding: 10px;
+}
+
+.topic-item h3 {
+    margin: 0;
+}
+
+/* Additional CSS for the question and answer sections */
+
+.question-section {
+    border: 1px solid #ccc;
+    padding: 20px;
+    background-color: #fff;
+}
+
+.question h2 {
+    color: #333;
+}
+
+.question p {
+    color: #555;
+}
+
+.answers {
+    margin-top: 20px;
+}
+
+.answers h3 {
+    color: #333;
+}
+
+.answer p {
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+    padding: 10px;
+}
+
+input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+}
+
+
+.add-answer-button {
+    display: inline-block;
+    padding: 12px 20px;
+    background-color: #3498db;
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.delete-answer-button {
+    display: inline-block;
+    padding: 12px 20px;
+    background-color: crimson;
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.answer b {
+    color: #3498db;
+}
+
+.answer a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 6px 10px;
+    background-color: #3498db;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+.username {
+    margin-top: 10px;
+    padding: 6px 10px;
+    background-color: white;
+    color: #27ae60;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.like-button {
+    margin-top: 10px;
+    padding: 6px 10px;
+    background-color: #27ae60;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+footer {
+    text-align: center;
+    background-color: #ccc;
+    padding: 10px;
+}
