@@ -126,30 +126,32 @@ def like_answer(request, answer_id):
     return HttpResponseRedirect(reverse("view-question", kwargs={"pk": answer.question_id}))
     
 
-
+@login_required(login_url="login")
 def update_question(request, pk):
     question = Question.objects.get(id=pk)
     form = QuestionForm(instance=question)
-    if request.method == "POST":
-        form = QuestionForm(request.POST, instance=question)
-        if form.is_valid():
-            form.save()
-            view_question_url = reverse("view-question", kwargs={"pk": question.id})
-            return redirect(view_question_url)
+    if request.user == question.user:
+        if request.method == "POST":
+            form = QuestionForm(request.POST, instance=question)
+            if form.is_valid():
+                form.save()
+                view_question_url = reverse("view-question", kwargs={"pk": question.id})
+                return redirect(view_question_url)
     return render(request, "question_form.html", {"form": form})
 
-
+@login_required(login_url="login")
 def update_answer(request, ans_id):
     answer = Answer.objects.get(id=ans_id)
     form = AnswerForm(instance=answer)
-    if request.method == "POST":
-        form = AnswerForm(request.POST, instance=answer)
-        if form.is_valid():
-            form.save()
-            view_question_url = reverse(
-                "view-question", kwargs={"pk": answer.question_id}
-            )
-            return redirect(view_question_url)
+    if request.user == answer.user:
+        if request.method == "POST":
+            form = AnswerForm(request.POST, instance=answer)
+            if form.is_valid():
+                form.save()
+                view_question_url = reverse(
+                    "view-question", kwargs={"pk": answer.question_id}
+                )
+                return redirect(view_question_url)
     return render(request, "answer_form.html", {"form": form})
 
 

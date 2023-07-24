@@ -23,6 +23,7 @@ __pycache__/
 # Secret keys and sensitive information
 *.env
 .env
+env/
 
 # Ignore compiled JavaScript and CSS
 *.js

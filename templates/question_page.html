@@ -21,7 +21,12 @@
           {{ answer.content }}<br>
           <i>Likes:{{answer.total_likes}}</i><br>
           <a href="{% url 'update-answer' answer.id %}">Edit</a>
-          <form action="{% url 'like-answer' answer.id %}" method="POST">{% csrf_token %} <button type="submit" name="answer_id" value="{{answer.id}}" class="like-button">Like</button></form>
+          <form action="{% url 'like-answer' answer.id %}" method="POST">
+            {% csrf_token %} 
+            <button type="submit" name="answer_id" value="{{answer.id}}" class="like-button">
+              Like
+            </button>
+          </form>
         </p>
       </div>
       {% endfor %}
