@@ -1,5 +1,7 @@
 # Quora Clone
 
+- Video: https://www.youtube.com/watch?v=MD5wOmRpdOU
+
 ### A website inspired by Quora with the following functionality requirements:
 
 1. The user should be able to create a login
